@@ -17,6 +17,8 @@ public class LambdaFunctionHandler implements RequestStreamHandler {
 
 	public void handleRequest(InputStream inputStream, OutputStream outputStream, Context context) throws IOException {
 
+		
+		
 		// Convert the inputStream to String		
 		String input = IOUtils.toString(inputStream);
 
