@@ -26,7 +26,7 @@ public class ThingsProxy {
 	
 	private String apiToken;
 	
-//	private static final String NAMESPACE = "com.bosch.si.awsiotbutton";
+	private static final String NAMESPACE = "";
 	
 	public static ThingsProxy create(String baseUrl, String username, String password, String apiToken) {
 		return new ThingsProxy(baseUrl, username, password, apiToken);
@@ -64,7 +64,7 @@ public class ThingsProxy {
 		try {
 
 			HttpPut httpput = new HttpPut(
-					this.baseUrl+"/api/1/things/"+thingId+"/features");
+					this.baseUrl+"/api/1/things/"+NAMESPACE+":"+thingId+"/features");
 			httpput.setHeader("x-cr-api-token", apiToken);
 			httpput.setEntity(new StringEntity(featureJson));
 
