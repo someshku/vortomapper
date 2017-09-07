@@ -81,8 +81,8 @@
 			<artifactId>repository-mapping</artifactId>
 			<version>0.10.0-SNAPSHOT</version>
 		</dependency>
-		
-				<dependency>
+
+		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>4.5.3</version>

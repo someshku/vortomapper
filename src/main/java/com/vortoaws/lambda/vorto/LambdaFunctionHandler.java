@@ -39,6 +39,8 @@ public class LambdaFunctionHandler implements RequestStreamHandler {
 		ObjectMapper objectMapper = new ObjectMapper();
 		Map<String, Object> map = objectMapper.readValue(input, new TypeReference<HashMap<String,Object>>(){});
 		String thingId = (String) map.get("serialNumber");
+		
+		context.getLogger().log("\nthingId: " + thingId);
 
 		// Mapping code starts here
 		DataMapperBuilder builder = IDataMapper.newBuilder();
@@ -51,6 +53,9 @@ public class LambdaFunctionHandler implements RequestStreamHandler {
 
 		DittoOutput mappedDittoOutput = mapper.map(DataInput.newInstance().fromJson(input));
 		
+		// Serialize mapped Eclipse Ditto format to JSON
+		context.getLogger().log("\nmappedDittoOutput: " + mappedDittoOutput.toJson());
+		
 		// Send dittoOutput to things
 		ThingsProxy thingsProxy = ThingsProxy.create(baseUrl, username, password, apiToken);
 		try {
@@ -61,8 +66,7 @@ public class LambdaFunctionHandler implements RequestStreamHandler {
 		}
 		
 
-		// Serialize mapped Eclipse Ditto format to JSON
-		context.getLogger().log(mappedDittoOutput.toJson());
+		
 
 		outputStream.write(mappedDittoOutput.toJson().getBytes());
 
